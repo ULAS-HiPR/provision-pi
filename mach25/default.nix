@@ -1,14 +1,16 @@
+
 { pkgs, lib, ... }: {
   time.timeZone = "America/New_York";
   users.users.root.initialPassword = "root";
   networking = {
-    hostName = "example";
+    hostName = "mach25";
     useDHCP = false;
     interfaces = {
       wlan0.useDHCP = true;
       eth0.useDHCP = true;
     };
   };
+  services.openssh.enable = true;
   raspberry-pi-nix.board = "bcm2711";
   hardware = {
     raspberry-pi = {
