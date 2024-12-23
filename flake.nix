@@ -1,5 +1,5 @@
 {
-  description = "raspberry-pi nixos configuration";
+  description = "provision pi";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
@@ -62,9 +62,13 @@
         sd-image = import ./sd-image;
       };
       nixosConfigurations = {
-        rpi-example = srcs.nixpkgs.lib.nixosSystem {
+        mach25 = srcs.nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
-          modules = [ self.nixosModules.raspberry-pi self.nixosModules.sd-image ./example ];
+          modules = [
+            self.nixosModules.raspberry-pi
+            self.nixosModules.sd-image
+            ./mach25
+          ];
         };
       };
       checks.aarch64-linux = self.packages.aarch64-linux;
@@ -81,7 +85,7 @@
               board-attr-set;
         in
         {
-          example-sd-image = self.nixosConfigurations.rpi-example.config.system.build.sdImage;
+          example-sd-image = self.nixosConfigurations.mach25.config.system.build.sdImage;
           firmware = pinned.raspberrypifw;
           libcamera = pinned.libcamera;
           wireless-firmware = pinned.raspberrypiWirelessFirmware;
