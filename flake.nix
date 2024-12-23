@@ -1,5 +1,5 @@
 {
-  description = "raspberry-pi nixos configuration";
+  description = "provision pi";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
