@@ -21,7 +21,9 @@
   };
   services.openssh = {
     enable = true;
-    permitRootLogin = "yes";
+    settings = {
+      PermitRootLogin = "yes";
+    };
   };
   raspberry-pi-nix.board = "bcm2711";
   hardware = {
