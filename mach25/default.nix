@@ -9,8 +9,20 @@
       wlan0.useDHCP = true;
       eth0.useDHCP = true;
     };
+    wireless = {
+      enable = true;
+      interfaces = [ "wlan0" ];
+      networks = {
+        "coldspot" = {
+          psk = "helloworld1";
+        };
+      };
+    };
   };
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    permitRootLogin = "yes";
+  };
   raspberry-pi-nix.board = "bcm2711";
   hardware = {
     raspberry-pi = {
