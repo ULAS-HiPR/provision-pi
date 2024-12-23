@@ -18,8 +18,13 @@ jobs:
       - name: Install Nix
         uses: cachix/install-nix-action@v16
 
+      - name: Install QEMU
+        uses: docker/setup-qemu-action@v2
+        with:
+          platforms: aarch64
+
       - name: Build flake
-        run: nix build
+        run: nix build '.#nixosConfigurations.mach25.config.system.build.sdImage' --no-write-lock-file --system aarch64-linux
 
       - name: Lint flake
         run: nix flake check
