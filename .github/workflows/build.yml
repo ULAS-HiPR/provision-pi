@@ -19,7 +19,7 @@ jobs:
         uses: cachix/install-nix-action@v16
 
       - name: Build flake
-        run: nix build
+        run: nix build --no-write-lock-file
 
       - name: Lint flake
         run: nix flake check
