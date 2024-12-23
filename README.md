@@ -6,7 +6,7 @@ It provides a minimal NixOS setup that boots headlessly with SSH and Wi-Fi.
 For usage, build the sd-image:
 
 ```shell
-nix build '.#nixosConfigurations.mach25.config.system.build.sdImage'
+nix build '.#nixosConfigurations.mach25.config.system.build.sdImage' --extra-experimental-features "nix-command flakes"
 ```
 
 Then write the image to an SD card:
